@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import FileSaver from 'file-saver'
 import StatsList from './components/StatsList/StatsList'
 import './App.scss'
 
@@ -21,8 +22,27 @@ function App() {
     setLastUpdatedTime(generateDate(currentDate));
   }
 
+  function jsonToCSV() {
+    let csv = ''
+    const headers = Object.keys(playersStats[0]);
+    csv += headers.join(',') + '\n';
+
+    playersStats.forEach(obj => {
+      const values = headers.map(header => obj[header]);
+      csv += values.join(',') + '\n';
+    });
+
+    return csv
+  }
+
+  function downloadCSVReport() {
+    let csv = jsonToCSV();
+    const blob = new Blob([csv], { type: 'text/csv' });
+    FileSaver.saveAs(blob, `PShGame_stats_${lastUpdatedTime}.csv`);
+  }
+
   async function fetchPlayersStats() {
-    let rawData = await fetch('http://localhost:3000/api/playersstats/top')
+    let rawData = await fetch('http://localhost:3000/top')
     let playersStats = await rawData.json()
     setPlayersStats(playersStats)
   }
@@ -57,7 +77,7 @@ function App() {
           <div className="text-center">
             <h2>Download the report</h2>
 
-            <button type="button" class="btn btn-warning">Warning</button>
+            <button type="button" className="btn btn-warning" onClick={downloadCSVReport}>Warning</button>
           </div>
         </div>
       </section>
