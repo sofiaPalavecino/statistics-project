@@ -1,0 +1,22 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: #14213d;
+    color: #ffffff;
+}
+
+main {
+    margin: 3.5em 0;
+}
+
+section {
+    margin: 2em 0;
+}
+
+.wrap{
+    @include media-breakpoint-up(md){
+        padding: 0 2em;
+    }
+}

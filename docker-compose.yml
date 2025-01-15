@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql
+    container_name: mysql_container
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: statistics
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+  api:
+    build: ./api
+    container_name: express_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    
