@@ -12,6 +12,4 @@ CREATE TABLE IF NOT EXISTS player_stats (
 );
 
 INSERT INTO player_stats (player_id, nickname, profile_image, score)
-VALUES (12, "varkirion", "https://randomuser.me/api/portraits/thumb/men/79.jpg", 1),
-(13, "purpledog163", "https://randomuser.me/api/portraits/thumb/women/1.jpg", 45),
-(14, "happygoose784", "https://randomuser.me/api/portraits/thumb/women/90.jpg", 50)
+VALUES ("3f78c32b-488c-4d9d-8820-d8f61cd80840", "varkirion", "https://randomuser.me/api/portraits/thumb/men/79.jpg", 1)

@@ -24,7 +24,7 @@ function App() {
 
   function jsonToCSV() {
     let csv = ''
-    const headers = Object.keys(playersStats[0]);
+    const headers = Object.keys(playersStats[0]).filter(header => header !== 'profile_image');
     csv += headers.join(',') + '\n';
 
     playersStats.forEach(obj => {
@@ -66,9 +66,9 @@ function App() {
         <div className="wrap">
           <div className='text-center'>
             <h1 className="fw-bold">PSh-Game Statistics</h1>
+            <h5>New statistics loaded every 5 minutes</h5>
             <span>Last updated: {lastUpdatedTime}</span>
           </div>
-
           <StatsList players={playersStats}></StatsList>
         </div>
       </section>
@@ -77,7 +77,7 @@ function App() {
           <div className="text-center">
             <h2>Download the report</h2>
 
-            <button type="button" className="btn btn-warning" onClick={downloadCSVReport}>Warning</button>
+            <button type="button" className="btn btn-warning" onClick={downloadCSVReport}>Download</button>
           </div>
         </div>
       </section>

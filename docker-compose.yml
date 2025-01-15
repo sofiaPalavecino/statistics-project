@@ -22,4 +22,15 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    
+  data-insertion:
+    build: ./data-insertion
+    container_name: data_insertion
+    depends_on:
+      - api
+  dashboard:
+    build: ./players-stats-dashboard
+    container_name: dashboard
+    ports:
+      - "8081:80"
+    depends_on:
+      - api    
